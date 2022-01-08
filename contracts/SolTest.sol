@@ -80,11 +80,13 @@ contract SolTest is ReentrancyGuard, Ownable {
 
     function addWhiteList(address contractAddr) public onlyOwner {
         isWhiteListed[contractAddr] = true;
+        emit AddWhiteList(contractAddr);
         // todo: 实现设置白名单，只有owner可以操作
     }
 
     function removeWhiteList(address contractAddr) public onlyOwner {
         isWhiteListed[contractAddr] = false;
+        emit RemoveWhiteList(contractAddr);
         // todo: 实现删除白名单地址，只有owner可以操作
     }
 
@@ -117,8 +119,8 @@ contract SolTest is ReentrancyGuard, Ownable {
         // todo: 实现从调用者的钱包地址，向本合约转账fromToken，数量fromTokenAmount；将实际获得到的fromToken的数量赋给_fromTokenAmount
         // todo: 实现将获得的eth数量，赋给变量_ethAmount
 
-        // uint256 feeAmount = 0;
-        uint256 feeAmount = (_fromTokenAmount * fee) / 100 gwei; // 手续费的数量
+        uint256 feeAmount = 0;
+        // uint256 feeAmount = (_fromTokenAmount * fee) / 100 gwei; // 手续费的数量
         // todo: 计算出手续费，_fromTokenAmount*fee，赋给变量feeAmount
 
         // todo: 给approveTarget地址授权转走fromAmount数量的fromToken
